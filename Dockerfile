@@ -1,4 +1,4 @@
-FROM ubuntu:24.04 AS base
+FROM debian:13 AS base
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
@@ -7,9 +7,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install the Ice nightly repo and Ice for C++ runtime.
-RUN curl -L "https://download.zeroc.com/ice/nightly/ubuntu24.04/ice-repo-nightly_1.0_all.deb" -o ice-repo-nightly.deb \
-    && dpkg -i ice-repo-nightly.deb \
-    && rm ice-repo-nightly.deb \
+RUN curl -L "https://download.zeroc.com/ice/3.8/debian13/ice-repo-3.8_1.0_all.deb" -o ice-repo.deb \
+    && dpkg -i ice-repo.deb \
+    && rm ice-repo.deb \
     && apt-get update \
     && apt-get install -y --no-install-recommends libzeroc-ice3.8 \
     && apt-get clean \
