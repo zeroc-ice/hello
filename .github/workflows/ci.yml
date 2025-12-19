@@ -48,6 +48,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Deploy
+        if: github.event_name != 'pull_request'
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.HELLO_HOST }}
